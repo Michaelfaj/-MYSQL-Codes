@@ -2,4 +2,4 @@
 
 Welcome to MYSQL repo!
 
-Here you will find MySQL projects
+Here, you will find MySQL projects
