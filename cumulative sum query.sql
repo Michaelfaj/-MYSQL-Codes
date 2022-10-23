@@ -21,17 +21,17 @@ select * from sales;
 -- these new policies 
 
 WITH Transactions AS(
-					SELECT custormername, amount, trandate, 
-						   ROW_NUMBER() OVER(PARTITION BY custormername order by trandate) as outer_rank,
-						   SUM(amount) OVER (PARTITION BY custormername  ORDER BY Inner_rank) as spent
-					FROM 
+		     SELECT custormername, amount, trandate, 
+			    ROW_NUMBER() OVER(PARTITION BY custormername order by trandate) as outer_rank,
+			    SUM(amount) OVER (PARTITION BY custormername  ORDER BY Inner_rank) as spent
+		     FROM 
                     -- created inner query to generate row numbers(inner_rank) which was used to create cumulative sum in my outer query
-							(SELECT *, ROW_NUMBER() over(partition by custormername order by trandate) Inner_rank
-							FROM sales) as inner_table 
-					 )
+			    (SELECT *, ROW_NUMBER() over(partition by custormername order by trandate) Inner_rank
+			    FROM sales) as inner_table 
+		    )
 SELECT custormername, 
-	   trandate, 
-	   Amount, 
-	   spent
+       trandate, 
+        Amount, 
+        spent
 FROM Transactions
 WHERE outer_rank > 3 OR spent > 50000;
