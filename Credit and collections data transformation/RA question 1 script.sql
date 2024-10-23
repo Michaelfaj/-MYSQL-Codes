@@ -2,7 +2,7 @@ use credit_collection;
 select * from payments;
 select * from loans;
   
-SET SESSION MAX_EXECUTION_TIME = 10000;
+-- SET SESSION MAX_EXECUTION_TIME = 10000;
   
 -- Common Table Expression (CTE) to generate a series of dates starting from the disbursement date of the loan up to the last repayment date for each loan
 WITH RECURSIVE DateSeries AS (
