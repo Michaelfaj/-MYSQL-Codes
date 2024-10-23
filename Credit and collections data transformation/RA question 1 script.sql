@@ -1,4 +1,4 @@
-use fairmoney;
+use credit_collection;
 select * from payments;
 select * from loans;
   
