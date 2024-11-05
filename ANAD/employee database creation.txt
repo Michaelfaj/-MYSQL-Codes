@@ -71,10 +71,4 @@ CREATE OR REPLACE VIEW current_dept_emp AS
     FROM dept_emp d
         INNER JOIN dept_emp_latest_date l
         ON d.emp_no=l.emp_no AND d.from_date=l.from_date AND l.to_date = d.to_date;
-        
--- populate salary
-select e.emp_no, concat(first_name,' ', last_name) as fullname, hire_date, count(title) as titles
-FROM employees e
-JOIN titles t on e.emp_no = t.emp_no
-group by e.emp_no, fullname, hire_date
-ORDER BY titles DESC, hire_date DESC;
+    
